@@ -1,0 +1,43 @@
+[package]
+name = "shopbring-ecka"
+license = "Apache-2.0"
+version = "0.1.0"
+authors = ["何述超 <heshuchao@hotmail.com>"]
+readme = "README.md"
+description = "Shopbring's key agreement library based on sm2"
+homepage = "https://github.com/blocktree/"
+repository = "https://github.com/blocktree/shopbring-ecka"
+edition = "2018"
+keywords = ["sm2","key agreement", "signature", "encrypt", "shopbring", "密钥协商", "密钥交换"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.libsm]
+version = "0.3.0"
+
+[dependencies.byteorder]
+version = "1"
+
+[dependencies.lazy_static]
+version = "1.0"
+
+[dependencies.num-bigint]
+version = "0.1"
+
+[dependencies.num-integer]
+version = "0.1"
+
+[dependencies.num-traits]
+version = "0.2"
+
+[dependencies.rand]
+version = "0.4"
+
+[dependencies.yasna]
+version = "0.1.3"
+
+[dependencies.hex]
+version = "0.3"
+
+[dependencies.sm3]
+version = "0.2.0"
