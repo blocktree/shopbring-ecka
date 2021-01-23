@@ -105,21 +105,3 @@ pub fn verify(public_key: &[u8], id: &str, message: &[u8], signature: &[u8]) -> 
     ctx.verify_raw(&e, &ctx.load_pubkey(uncompressed_public_key.as_slice()).unwrap(), &sig.unwrap())
 }
 
-#[cfg(test)]
-mod tests {
-    use crate::signature::{sign, verify};
-
-    #[test]
-    fn test_sign() {
-        let private_key: [u8; 32] = [54, 252, 224, 48, 18, 145, 4, 133, 146, 167, 11, 6, 102, 93, 223, 186, 226, 78, 216, 21, 94, 170, 9, 209, 120, 113, 182, 41, 122, 249, 28, 104];
-        let public_key: [u8; 64] = [160, 197, 40, 160, 163, 227, 170, 124, 8, 81, 232, 160, 246, 179, 113, 56, 112, 201, 157, 192, 150, 131, 167, 136, 126, 185, 62, 46, 105, 179, 116, 44, 166, 106, 76, 29, 85, 178, 11, 238, 194, 199, 42, 45, 225, 150, 163, 70, 214, 239, 134, 157, 205, 172, 164, 5, 21, 255, 185, 131, 180, 163, 220, 25];
-
-        let message: [u8; 4] = [11,22,33,44];
-        let id = "signer";
-
-        let signature = sign(&private_key, id, &message);
-
-        assert!(verify(&public_key, id, &message, signature.unwrap().as_slice()))
-    }
-
-}

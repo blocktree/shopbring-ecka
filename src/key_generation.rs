@@ -37,37 +37,3 @@ pub fn generate_public_key_from_private(private_key: &[u8]) -> Result<Vec<u8>, S
         )
     }
 }
-
-
-
-#[cfg(test)]
-mod tests {
-    use crate::key_generation::generate_public_key_from_private;
-
-    #[test]
-    fn test_generate_public_key_from_private() {
-        let private_key: [u8; 32] = [152,140,107,109,220,212,209,1,200,39,157,39,137,2,70,102,75,101,53,234,47,39,138,140,141,111,213,25,241,74,231,123];
-        let expect_public_key: [u8; 64] = [46, 23, 193, 87, 75, 239, 54, 252, 224, 48, 18, 145, 4, 133, 146, 167, 11, 6, 102, 93, 223, 186, 226, 78, 216, 21, 94, 170, 9, 209, 120, 113, 182, 41, 122, 249, 28, 104, 113, 184, 237, 61, 177, 184, 130, 164, 178, 234, 62, 227, 79, 159, 156, 165, 11, 89, 179, 211, 252, 16, 0, 16, 46, 128];
-        let public_key = generate_public_key_from_private(&private_key);
-
-        assert!(public_key.is_ok());
-        assert_eq!(public_key.unwrap().as_slice(), expect_public_key)
-    }
-
-    #[test]
-    fn test_invalid_private_key() {
-        let private_key = hex::decode("9d27890246664b6535ea2f278a8c8d");
-
-        let public_key = generate_public_key_from_private(private_key.unwrap().as_slice());
-
-        assert!(public_key.is_err());
-
-
-        let private_key = hex::decode("0000000000000000000000000000000000000000000000000000000000000000");
-
-        let public_key = generate_public_key_from_private(private_key.unwrap().as_slice());
-
-        assert!(public_key.is_err());
-    }
-
- }

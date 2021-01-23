@@ -154,25 +154,3 @@ pub fn decrypt(private_key: &[u8], cipher: &[u8]) -> Result<Vec<u8>, String> {
     Ok(c)
 }
 
-
-#[cfg(test)]
-mod tests {
-    use crate::encryption::{encrypt, decrypt};
-
-    #[test]
-    fn test_encryption() {
-        let private_key: [u8; 32] = [3, 172, 194, 4, 51, 104, 150, 46, 94, 221, 133, 33, 220, 132, 145, 166, 222, 42, 109, 38, 143, 234, 127, 141, 96, 108, 220, 124, 199, 122, 18, 176];
-        let public_key: [u8; 64] = [159, 33, 15, 91, 218, 164, 218, 245, 154, 38, 18, 194, 196, 168, 74, 117, 188, 103, 252, 143, 58, 252, 193, 252, 160, 75, 226, 45, 29, 17, 224, 148, 248, 228, 181, 77, 198, 215, 21, 108, 73, 251, 129, 39, 203, 166, 199, 110, 204, 49, 98, 67, 115, 178, 238, 46, 163, 159, 75, 45, 153, 181, 183, 138];
-
-        let plain:[u8; 4] = [1,2,3,4];
-
-        let cipher = encrypt(&public_key, &plain);
-        assert!(cipher.is_ok());
-
-        let check = decrypt(&private_key, cipher.unwrap().as_slice());
-        assert!(check.is_ok());
-
-        assert_eq!(plain.to_vec(), check.unwrap())
-    }
-
-}
